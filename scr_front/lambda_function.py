@@ -2,17 +2,13 @@ import json
 import os, re, base64
 import boto3
 from urllib.parse import unquote
-#remitente = splitString
 
 def lambda_handler(event, context):
     
-    mypage = page_router(event['httpMethod'],event['queryStringParameters'],event['body'])
-    
+    mypage = page_router(event['httpMethod'],event['queryStringParameters'],event['body'])    
     return mypage
 
-
-def page_router(httpmethod,querystring,formbody):
-   
+def page_router(httpmethod,querystring,formbody):   
    
     if httpmethod == 'GET':
         htmlFile = open('contactus.html', 'r')
@@ -23,8 +19,6 @@ def page_router(httpmethod,querystring,formbody):
         'body': htmlContent
         }
     
-    
-    #response = formbody 
     response = unquote(formbody)
     print(response)
     string = response
@@ -45,8 +39,7 @@ def page_router(httpmethod,querystring,formbody):
     res = lista.split(spl_word, 1)
     global splitString
     splitString = res[1]
-    print(splitString)
-    
+    print(splitString)    
     
     client = boto3.client('lambda')
     response = client.update_function_configuration(
@@ -77,38 +70,14 @@ def page_router(httpmethod,querystring,formbody):
         'statusCode': 200, 
         'headers': {"Content-Type":"text/html"},
         'body': htmlContent
-        }    
-    
+        }
 
-    
 def insert_record(formbody):
     
     formbody = formbody.replace("=", "' : '")
     formbody = formbody.replace("&", "', '")
     formbody = "INSERT INTO os.environ['DB_ENDPOINT'] value {'" + formbody +  "'}"
     
-    client = boto3.client('dynamodb')
-    #client.execute_statement(Statement= formbody)
+    client = boto3.client('dynamodb')    
     response = client.execute_statement(Statement= formbody)
-    #client.execute_statement(Statement='SELECT * FROM dojotable')
-    #print(response)
-    #stmt = "SELECT email FROM dojotable"
-    #response = client.execute_statement(Statement= stmt)
-    #print(response["Items"])
-    
 
-#import boto3
-#def lambda_handler(event, context): 
-    #print(formbody)
-    #client = boto3.client('lambda')
-    #response = client.update_function_configuration(
-        #FunctionName='sest',
-        #Environment={
-            #'Variables': {
-            #'RECIPIENT': remitente
-            #        }
-            #    }
-            #)
-
-
-    

@@ -2,14 +2,12 @@ import json
 import os, re, base64
 import boto3
 from urllib.parse import unquote
-#remitente = splitString
 
 def lambda_handler(event, context):
     
     mypage = page_router(event['httpMethod'],event['queryStringParameters'],event['body'])
     
     return mypage
-
 
 def page_router(httpmethod,querystring,formbody):
    
@@ -23,8 +21,6 @@ def page_router(httpmethod,querystring,formbody):
         'body': htmlContent
         }
     
-    
-    #response = formbody 
     response = unquote(formbody)
     print(response)
     string = response
@@ -90,27 +86,8 @@ def insert_record(formbody):
     formbody = "INSERT INTO appdiploma value {'" + formbody +  "'}"
     
     client = boto3.client('dynamodb')
-    #client.execute_statement(Statement= formbody)
-    response = client.execute_statement(Statement= formbody)
-    #client.execute_statement(Statement='SELECT * FROM dojotable')
-    #print(response)
-    #stmt = "SELECT email FROM dojotable"
-    #response = client.execute_statement(Statement= stmt)
-    #print(response["Items"])
     
-
-#import boto3
-#def lambda_handler(event, context): 
-    #print(formbody)
-    #client = boto3.client('lambda')
-    #response = client.update_function_configuration(
-        #FunctionName='sest',
-        #Environment={
-            #'Variables': {
-            #'RECIPIENT': remitente
-            #        }
-            #    }
-            #)
-
+    response = client.execute_statement(Statement= formbody)
+    
 
     
