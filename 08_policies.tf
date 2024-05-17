@@ -50,14 +50,14 @@ resource "aws_s3_bucket_policy" "bucket_policy_qr" {
 EOF
 }
 
- data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {}
 
 # Rol para la lambda de QR que permite hacer put de los archivos (cod¡gos qr) en S3
 
 resource "aws_iam_role_policy" "sts_assumerole_lambda" {
-    name = "sts-assumerole-lambda"
-    role = aws_iam_role.qr_lambda.name
-    policy = <<-EOF
+  name   = "sts-assumerole-lambda"
+  role   = aws_iam_role.qr_lambda.name
+  policy = <<-EOF
 {
     "Statement": [
         {

@@ -19,7 +19,7 @@ locals {
 resource "local_file" "deployment_template_qr" {
   content = templatefile("src_qr/lambda_function.py", {
     PRESIGNED = aws_s3_bucket.example.id
-    QR = aws_s3_bucket.qrdiplomas.id
+    QR        = aws_s3_bucket.qrdiplomas.id
     }
   )
   filename = "/Users/ricardo.martinez/Documents/terraform/diplomas/lambda/lambda1-urlpresigned/qr/lambda_function.py"

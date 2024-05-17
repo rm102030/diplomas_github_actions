@@ -12,7 +12,7 @@ resource "aws_lambda_function" "email" {
   description   = "Email"
   role          = aws_iam_role.front_lambda.arn
   # Se reusa el rol de front
-  runtime       = "python3.12"
+  runtime = "python3.12"
 
 
   filename         = data.archive_file.email_artefact.output_path
@@ -20,11 +20,11 @@ resource "aws_lambda_function" "email" {
 
   timeout     = 10
   memory_size = 128
-#   environment {
-#     variables = {
-#       API_ENDPOINT = aws_apigatewayv2_stage.default.invoke_url
-#       DB_ENDPOINT  = var.aws_dynamodb_app
+  #   environment {
+  #     variables = {
+  #       API_ENDPOINT = aws_apigatewayv2_stage.default.invoke_url
+  #       DB_ENDPOINT  = var.aws_dynamodb_app
 
-#     }
-#   }
+  #     }
+  #   }
 }

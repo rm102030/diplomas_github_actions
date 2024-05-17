@@ -23,11 +23,6 @@ variable "aws_bucket_qr" {
   default = "qrdiplomas"
 }
 
-variable "aws_bucket_imagelist" {
-  type    = string
-  default = "bucket-images-list"
-}
-
 variable "aws_dynamodb_app" {
   type    = string
   default = "diploma"
