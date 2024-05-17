@@ -3,7 +3,7 @@ data "archive_file" "front_artefact" {
   output_path = "files/front-artefact.zip"
   type        = "zip"
   source_dir  = "/Users/ricardo.martinez/Documents/terraform/diplomas/lambda/lambda1-urlpresigned/front"
-  depends_on  = [local_file.deployment_template]
+  depends_on  = [local_file.deployment_template, local_file.deployment_template_DB]  
 }
 
 resource "aws_lambda_function" "front" {

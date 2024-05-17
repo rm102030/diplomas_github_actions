@@ -15,17 +15,17 @@ variable "aws_profile" {
 
 variable "aws_bucket_presigned" {
   type    = string
-  default = "cduranmartinez"
+  default = "urlprefirmadas"
 }
 
 variable "aws_bucket_qr" {
   type    = string
-  default = "qrdiplomas"
+  default = "qr"
 }
 
 variable "aws_dynamodb_app" {
   type    = string
-  default = "diploma"
+  default = "dbapp"
 }
 
 variable "table_billing_mode" {
