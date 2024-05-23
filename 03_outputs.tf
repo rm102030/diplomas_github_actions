@@ -15,6 +15,6 @@ output "API_Nº1_url" {
   value       = aws_apigatewayv2_stage.default.invoke_url
 }
 
-output "API_Nº2_url" { value = "${aws_api_gateway_deployment.front.invoke_url}${aws_api_gateway_stage.stage.stage_name}/${aws_api_gateway_resource.root.path_part}" }
+output "API_Nº2_url" { value = "${aws_api_gateway_deployment.front.invoke_url}${aws_api_gateway_stage.stage.stage_name}/${aws_api_gateway_resource.root.path_part}?#home"}
 
 

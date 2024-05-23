@@ -31,8 +31,9 @@ def page_router(httpmethod,querystring,formbody):
     txt = string
     x = txt.split("&")
     print(x)
-    
-    lista = x[3]
+    ########################################################################
+    # Importante si ud coloca un campo antes del email en la tabla debe increntar el valor de X , si tiene error revise los logs de la lambda front
+    lista = x[4]
     print(lista)
     
     spl_word = 'email='

@@ -20,7 +20,7 @@ variable "aws_bucket_presigned" {
 
 variable "aws_bucket_qr" {
   type    = string
-  default = "qr"
+  default = "qr-diplomas"
 }
 
 variable "aws_dynamodb_app" {
