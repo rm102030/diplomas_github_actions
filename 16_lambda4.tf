@@ -2,7 +2,8 @@
 data "archive_file" "email_artefact" {
   output_path = "files/email-artefact.zip"
   type        = "zip"
-  source_dir  = "/Users/ricardo.martinez/Documents/terraform/diplomas/lambda/lambda1-urlpresigned/email"
+  source_dir  = "${path.module}/email"
+  
   depends_on  = [local_file.deployment_template]
 }
 
@@ -19,12 +20,5 @@ resource "aws_lambda_function" "email" {
   source_code_hash = data.archive_file.email_artefact.output_base64sha256
 
   timeout     = 10
-  memory_size = 128
-  #   environment {
-  #     variables = {
-  #       API_ENDPOINT = aws_apigatewayv2_stage.default.invoke_url
-  #       DB_ENDPOINT  = var.aws_dynamodb_app
-
-  #     }
-  #   }
+  memory_size = 128  
 }
