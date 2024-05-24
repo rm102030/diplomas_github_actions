@@ -1,7 +1,8 @@
 # Aqui se configura la variable del  Endpoint de la API de las Urls Prefirmadas 
 resource "local_file" "deployment_template" {
   content = templatefile("scr_front/contactus.html", {    
-    API_ENDPOINT = aws_apigatewayv2_stage.default.invoke_url    
+    API_ENDPOINT = aws_apigatewayv2_stage.default.invoke_url
+    STAGE = var.api_stage    
     }
   )
   filename = "${path.module}/front/contactus.html"
