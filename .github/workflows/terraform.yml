@@ -39,6 +39,10 @@ jobs:
         tf_actions_working_dir: '.'
         tf_actions_comment: true
         #args: '-var="instance_type=t2.medium"'
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color    
     
     - name: Terraform plan
       uses: hashicorp/terraform-github-actions@master
