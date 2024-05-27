@@ -73,13 +73,13 @@ resource "aws_cognito_user" "user-app" {
   desired_delivery_mediums = ["EMAIL"]
 }
 
-resource "null_resource" "cognito_user" {
-  depends_on = [aws_cognito_user.user-app]
-  provisioner "local-exec" {
+# resource "null_resource" "cognito_user" {
+#   depends_on = [aws_cognito_user.user-app]
+#   provisioner "local-exec" {
 
-    command = "aws cognito-idp admin-set-user-password --user-pool-id ${aws_cognito_user_pool.user_pool.id} --username ${var.user_cognito} --password ${var.password_user_cognito}"
-  }
-}
+#     command = "aws cognito-idp admin-set-user-password --user-pool-id ${aws_cognito_user_pool.user_pool.id} --username ${var.user_cognito} --password ${var.password_user_cognito}"
+#   }
+# }
 
 # Multiples Usuarios para cognito descomentarie y ajuste en vars los users 
 # resource "null_resource" "cognito_user" {
