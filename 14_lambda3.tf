@@ -7,17 +7,17 @@ data "archive_file" "qrgenerate_artefact" {
 }
 
 resource "aws_lambda_function" "qrgenerate" {
-  function_name = "qrgenerate"
-  handler       = "lambda_function.lambda_handler"
-  description   = "QR-Generate"
-  role          = aws_iam_role.qr_lambda.arn
-  runtime       = "python3.12"
-  layers        = [aws_lambda_layer_version.my-lambda-layer.arn]
+  function_name    = "qrgenerate"
+  handler          = "lambda_function.lambda_handler"
+  description      = "QR-Generate"
+  role             = aws_iam_role.qr_lambda.arn
+  runtime          = "python3.12"
+  layers           = [aws_lambda_layer_version.my-lambda-layer.arn]
   filename         = data.archive_file.qrgenerate_artefact.output_path
   source_code_hash = data.archive_file.qrgenerate_artefact.output_base64sha256
 
   timeout     = 20
-  memory_size = 128  
+  memory_size = 128
 }
 
 # create lambda layer from s3 object

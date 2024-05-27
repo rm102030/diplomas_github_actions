@@ -3,8 +3,8 @@ data "archive_file" "email_artefact" {
   output_path = "files/email-artefact.zip"
   type        = "zip"
   source_dir  = "${path.module}/email"
-  
-  depends_on  = [local_file.deployment_template]
+
+  depends_on = [local_file.deployment_template]
 }
 
 resource "aws_lambda_function" "email" {
@@ -20,5 +20,5 @@ resource "aws_lambda_function" "email" {
   source_code_hash = data.archive_file.email_artefact.output_base64sha256
 
   timeout     = 10
-  memory_size = 128  
+  memory_size = 128
 }
