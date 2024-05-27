@@ -42,7 +42,7 @@ jobs:
 
     - name: Terraform Validate
       id: validate
-      run: terraform validate -no-color    
+      run: terraform validate    
     
     - name: Terraform plan
       uses: hashicorp/terraform-github-actions@master
