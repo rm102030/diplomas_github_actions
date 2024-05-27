@@ -1,27 +1,27 @@
-resource "aws_s3_bucket_policy" "bucket_policy" {
-  bucket     = aws_s3_bucket.urlpresigned.id
-  depends_on = [aws_s3_bucket.urlpresigned]
-  policy     = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicListGet",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": [
-                "s3:List*",
-                "s3:Get*",
-                "s3:Put*"
-            ],
-            "Resource": [
-                "arn:aws:s3:::${var.aws_bucket_presigned}/*"               
-            ]
-        }
-    ]
-}
-EOF
-}
+# resource "aws_s3_bucket_policy" "bucket_policy" {
+#   bucket     = aws_s3_bucket.urlpresigned.id
+#   depends_on = [aws_s3_bucket.urlpresigned]
+#   policy     = <<EOF
+# {
+#     "Version": "2012-10-17",
+#     "Statement": [
+#         {
+#             "Sid": "PublicListGet",
+#             "Effect": "Allow",
+#             "Principal": "*",
+#             "Action": [
+#                 "s3:List*",
+#                 "s3:Get*",
+#                 "s3:Put*"
+#             ],
+#             "Resource": [
+#                 "arn:aws:s3:::${var.aws_bucket_presigned}/*"               
+#             ]
+#         }
+#     ]
+# }
+# EOF
+# }
 
 resource "aws_s3_bucket_policy" "bucket_policy_qr" {
   bucket = aws_s3_bucket.qrdiplomas.id
