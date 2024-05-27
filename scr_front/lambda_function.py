@@ -81,4 +81,5 @@ def insert_record(formbody):
     
     client = boto3.client('dynamodb')    
     response = client.execute_statement(Statement= formbody)
+    
 
