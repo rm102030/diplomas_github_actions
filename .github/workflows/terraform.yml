@@ -65,7 +65,7 @@ jobs:
         tf_actions_subcommand: ${{ github.event.inputs.terraform_action }}
         tf_actions_working_dir: '.'
         tf_actions_comment: true
-        #args: '-auto-approve -var="instance_type=t2.medium"'
+        args: '-auto-approve'
     
     - name: Terraform destroy
       if: ${{ github.event.inputs.terraform_action == 'destroy' }}
@@ -75,4 +75,5 @@ jobs:
         tf_actions_subcommand: ${{ github.event.inputs.terraform_action }}
         tf_actions_working_dir: '.'
         tf_actions_comment: true
+        args: '-auto-approve'
         #args: '-auto-approve -var="instance_type=t2.medium"'
