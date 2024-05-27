@@ -65,7 +65,7 @@ def page_router(httpmethod,querystring,formbody):
         
         insert_record(formbody)
         
-        htmlFile = open('confirm.html', 'r')
+        htmlFile = open('contactus.html', 'r')
         htmlContent = htmlFile.read()
         return {
         'statusCode': 200, 
