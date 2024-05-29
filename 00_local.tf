@@ -12,6 +12,7 @@ resource "local_file" "deployment_template" {
 resource "local_file" "deployment_template_DB" {
   content = templatefile("scr_front/lambda_function.py", {
     DB_ENDPOINT = var.aws_dynamodb_app
+    PRESIGNED = aws_s3_bucket.urlpresigned.id
     }
   )
   filename = "${path.module}/front/lambda_function.py"
