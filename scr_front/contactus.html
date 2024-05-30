@@ -125,7 +125,8 @@
 		<h2><center>Seleccione el Certificado</center></h2>
 			<div v-if="!image">
 			  <h3>Subir Certificado</h3>
-			  <p>Importante solo se admite formato de imagen *.JPEG</p>
+			  <center><p style="color: red; margin-top:0; margin-bottom:0;">IMPORTANTE</p></center> 
+        <center><p style="color: red; margin-top:0; margin-bottom:0;">Asegúrese de adjuntar el certificado antes de guardar</p></center><br>
 			<input type="file" @change="onFileChange" accept="image/jpeg">
 			</div>
 			<div v-else>
@@ -257,10 +258,11 @@ form {
 }
 
 img {
-  width: 100%;
+  width: 80%;
   margin: auto;
   display: inline;
-  margin-bottom: 10px;
+  display: flex; justify-content: center; 
+  margin-bottom: 20px;
   
 }
 
