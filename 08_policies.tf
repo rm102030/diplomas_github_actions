@@ -50,6 +50,32 @@ resource "aws_s3_bucket_policy" "bucket_policy_qr" {
 EOF
 }
 
+# Policy para permitir get al fondo de pantalla del front desde el bucket S3
+
+resource "aws_s3_bucket_policy" "bucket_policy_fondo_pantalla" {
+  bucket = aws_s3_bucket.fondo_front_bucket.id
+  depends_on = [aws_s3_bucket_public_access_block.fondo_de_pantalla]
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicListGet",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Principal": "*",            
+            "Action": [                
+                "s3:Get*"
+            ],
+            "Resource": [                
+                "arn:aws:s3:::${var.aws_bucket_fondo_de_pantalla}/*"
+            ]
+        }              
+    ]
+}
+EOF
+}
+
 data "aws_caller_identity" "current" {}
 
 # Rol para la lambda de QR que permite hacer put de los archivos (cod¡gos qr) en S3
