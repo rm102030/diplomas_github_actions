@@ -14,6 +14,10 @@ resource "aws_iam_role" "src_lambda" {
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
 }
 
+resource "aws_iam_role" "json_lambda" {
+  name               = "json-lambda-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
+}
 resource "aws_iam_role" "front_lambda" {
   name               = "front-lambda-role"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
@@ -87,6 +91,20 @@ resource "aws_iam_role_policy_attachment" "role-policy-attachment-qr" {
   ])
 
   role       = aws_iam_role.qr_lambda.name
+  policy_arn = each.value
+
+}
+
+resource "aws_iam_role_policy_attachment" "role-policy-attachment-json" {
+  for_each = toset([
+    "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+    "arn:aws:iam::aws:policy/PowerUserAccess",
+    "arn:aws:iam::aws:policy/AWSLambdaExecute",
+    "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+  ])
+
+  role       = aws_iam_role.json_lambda.name
   policy_arn = each.value
 
 }

@@ -67,3 +67,8 @@ variable "password_user_cognito" {
 # variable "passwords" {
 #   default = ["Password1*", "Password2*"]
 # }
+
+variable "aws_bucket_json" {
+  type    = string
+  default = "exportdynamojson"
+}
