@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 	<script src="https://unpkg.com/vue@1.0.28/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>    
+  <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>    
 	<title>Registro de Informacion TI</title>
 	<!-- Aqui van los scripts del primer formulario  -->
 	<script>
@@ -24,14 +24,62 @@
 </head>
 <body>
   <div class="dropdown">
-    <button onclick="myFunctionButton()" class="dropbtn">Menu</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="#logout" onclick="self.close()">Logout</a>
-    </div>
-  </div>  
+    <!-- <button onclick="myFunctionButton()" class="dropbtn">Menu</button> -->
+    <select name="Inicio" onchange="showMe(this.value);" class="dropbtn">
+      <!-- <div id="myDropdown" class="dropdown-content"> -->
+      <!--  <a href="#home">Home</a> -->
+      <!--  <a href="#about">About</a> -->
+      <!--  <a href="#contact">Contact</a> -->
+      <!--  <a href="#logout" onclick="self.close()">Logout</a> --> 
+        <option value="x" selected="selected">Inicio</option>
+        <option value="a" >Registro</option>
+        <option value="b">Consultas</option>
+        <option value="c">Mantenimiento</option>
+        <option value="d">Salir</option>
+          </select>
+  </div>
+  <script>
+    function showMe(value) {
+      if (value=="a") {
+        document.getElementById('principal').style.display="block";
+        document.getElementById('form-container-03').style.display="none";
+        document.getElementById('x').style.display="none";
+        document.getElementById('c').style.display="none";
+        document.getElementById('d').style.display="none";
+        }
+        if (value=="b") {
+        document.getElementById('form-container-03').style.display="block";
+        document.getElementById('principal').style.display="none";
+        document.getElementById('x').style.display="none";
+        document.getElementById('c').style.display="none";
+        document.getElementById('d').style.display="none";
+        }
+        if (value=="c") {
+        document.getElementById('c').style.display="block";
+        document.getElementById('principal').style.display="none";
+        document.getElementById('form-container-03').style.display="none";
+        document.getElementById('d').style.display="none";
+        document.getElementById('x').style.display="none";
+        }
+        if (value=="x") {
+        document.getElementById('x').style.display="block";
+        document.getElementById('principal').style.display="none";
+        document.getElementById('form-container-03').style.display="none";
+        document.getElementById('c').style.display="none";
+        document.getElementById('d').style.display="none";
+        }
+      }  
+  </script>
+    <div id="form-container-03"  style="display: none;">
+      <h1>Consultas</h1>
+<div class="container">
+  <input type="text" placeholder="Search ..." class="filter-input">
+  <div class="output"></div>
+</div>    
+<script type="module" src="https://exportdynamojson.s3.amazonaws.com/main.js"></script> 
+</div>
+<div id="c"  style="display: none;"></div>
+<div id="x"  style="display: none;"></div>
   <script>
   /* When the user clicks on the button, 
   toggle between hiding and showing the dropdown content */
@@ -64,10 +112,10 @@
 				}
 				</script>
         <script>
-          function myFunctiondate() {  
-            document.getElementById("fecha").value = new Date().toISOString().substring(0, 10);
-          }  
-          </script>
+        function myFunctiondate() {  
+          document.getElementById("fecha").value = new Date().toISOString().substring(0, 10);
+        }  
+        </script>          
 				<!-- Aqui estoy ocultando el numero aleatorio que genera el submit y lo guarda en Dynamodb -->
 <h2><center>Registre sus datos</center></h2>                
 			<input type="number" id="id" name="id" style="display:none" ><br>
@@ -118,7 +166,7 @@
         <option value="erlang">Erlang</option>
         <option value="NoAplica">NoAplica</option>
         </select></br> 
-			<button id="myBtn" type="submit" value="Submit" onclick="myFunction();myFunctiondate()" disabled="disabled">Guardar</button>      
+	  <button id="myBtn" type="submit" value="Submit" onclick="myFunction();myFunctiondate()" disabled="disabled">Guardar</button>            
     </form>
 </div>
 <!--  script para habilitar el boton de guardar -->
@@ -228,7 +276,7 @@ form {
   display: block;
   margin: auto;
   width: 400px;
-  height: 650px;
+  height: 700px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -243,7 +291,7 @@ form {
 {
   position: absolute;
   top: 90px;
-  left: 260px;
+  left: 200px;
   
 }
 
@@ -251,25 +299,42 @@ form {
 {
   position: absolute;
   top: 90px;
-  left: 790px;
+  left: 730px;
   display: block;
   margin: auto;
   background-color: white;
   width: 400px;
-  height: 650px;
+  height: 700px;
   border-radius: 15px;
   padding: 50px;
   padding-top: 0.5em;
   padding-bottom: 1.5em;
+  
+}
+
+#form-container-03
+{
+  position: absolute;
+  top: 90px;
+  left: 200px;
+  display: block;
+  margin: auto;
+  background-color: white;
+  width: 930px;
+  height: 700px;
+  border-radius: 15px;
+  padding: 50px;
+  padding-top: 0.5em;
+  padding-bottom: 1.5em;
+  
 }
 
 img {
   width: 80%;
   margin: auto;
-  display: inline;
+  display: inline;  
   display: flex; justify-content: center; 
   margin-bottom: 20px;
-  
 }
 
 /*CSS*/
@@ -285,8 +350,9 @@ body{
   /*display: absolute;*/
   justify-content: center;
   align-items: center;
-  background-color: var(--color-principal);  
-  background-image: url(${URL_FONDO_FRONT});  
+  background-color: var(--color-principal);
+  background-image: url(${URL_FONDO_FRONT}); 
+  /*background-image: url(https://pragmalab.s3.amazonaws.com/FONDO-2.png); */
   background-size:cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -330,6 +396,7 @@ button[type="submit"]{
 
 p{
   max-width: 30ch;
+  
 }
 
 select{
@@ -433,6 +500,63 @@ select{
 .dropdown a:hover {background-color: #ddd;}
 
 .show {display: block;}
+
+/* nuevo menu */
+
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-input{
+    width: 90%;
+    margin-bottom: 2rem;
+    height: 45px;
+    padding: 0.5rem 2rem;
+   border: 1px solid #ccc;
+   border-radius: 10px;
+   outline: none;
+   font-size: 1rem;
+}
+
+
+table{
+    border-collapse: collapse;
+    width: 90%;
+    font-size: 0.600em;
+}
+
+th, td{
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color: #ccc;
+}
+
+.no-item{
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-left: 5px solid red;
+    background-color: pink;
+    color: red;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.container{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
+    border-radius: 10px;
+}
 
 </style>
 

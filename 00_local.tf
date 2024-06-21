@@ -1,8 +1,8 @@
 # Aqui se configura la variable del  Endpoint de la API de las Urls Prefirmadas 
 resource "local_file" "deployment_template" {
-  content = templatefile("scr_front/contactus.html", {    
-    API_ENDPOINT = aws_apigatewayv2_stage.default.invoke_url
-    STAGE = var.api_stage
+  content = templatefile("scr_front/contactus.html", {
+    API_ENDPOINT    = aws_apigatewayv2_stage.default.invoke_url
+    STAGE           = var.api_stage
     URL_FONDO_FRONT = "https://${aws_s3_bucket.fondo_front_bucket.id}.s3.${aws_s3_bucket.fondo_front_bucket.region}.amazonaws.com/${aws_s3_object.fondo_front_bucket.key}"
     }
   )
@@ -13,7 +13,7 @@ resource "local_file" "deployment_template" {
 resource "local_file" "deployment_template_DB" {
   content = templatefile("scr_front/lambda_function.py", {
     DB_ENDPOINT = var.aws_dynamodb_app
-    PRESIGNED = aws_s3_bucket.urlpresigned.id
+    PRESIGNED   = aws_s3_bucket.urlpresigned.id
     }
   )
   filename = "${path.module}/front/lambda_function.py"
@@ -28,7 +28,7 @@ locals {
 # Aqui se configura dos variables que llaman a 2 Bucket S3 el de origen y el de destino para generar los QRs  
 resource "local_file" "deployment_template_qr" {
   content = templatefile("src_qr/lambda_function.py", {
-    PRESIGNED = aws_s3_bucket.urlpresigned.id 
+    PRESIGNED = aws_s3_bucket.urlpresigned.id
     QR        = aws_s3_bucket.qrdiplomas.id
     }
   )

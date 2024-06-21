@@ -1,8 +1,8 @@
 resource "aws_s3_bucket_policy" "bucket_policy" {
-  depends_on = [aws_s3_bucket_public_access_block.urlpresigned]   
+  depends_on = [aws_s3_bucket_public_access_block.urlpresigned]
   bucket     = aws_s3_bucket.urlpresigned.id
   #depends_on = [aws_s3_bucket.urlpresigned]
-  policy     = <<EOF
+  policy = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -54,9 +54,9 @@ EOF
 # Policy para permitir get al fondo de pantalla del front desde el bucket S3
 
 resource "aws_s3_bucket_policy" "bucket_policy_fondo_pantalla" {
-  bucket = aws_s3_bucket.fondo_front_bucket.id
+  bucket     = aws_s3_bucket.fondo_front_bucket.id
   depends_on = [aws_s3_bucket_public_access_block.fondo_de_pantalla]
-  policy = <<EOF
+  policy     = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
