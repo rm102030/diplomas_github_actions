@@ -15,7 +15,7 @@ variable "aws_profile" {
 
 variable "aws_bucket_presigned" {
   type    = string
-  default = "urlprefi-diploma"
+  default = "urlprefidiploma"
 }
 
 variable "aws_bucket_qr" {
