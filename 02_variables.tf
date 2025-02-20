@@ -15,7 +15,7 @@ variable "aws_profile" {
 
 variable "aws_bucket_presigned" {
   type    = string
-  default = "urlprefirmadas"
+  default = "urlprefirmada"
 }
 
 variable "aws_bucket_qr" {
