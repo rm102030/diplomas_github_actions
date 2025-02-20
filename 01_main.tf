@@ -8,8 +8,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket         = "pragmalabstatebucket"
-    dynamodb_table = "pragmalabstatebucket2024"
+    bucket         = "pragmalabstatebucket2025"
+    dynamodb_table = "pragmalabstatebucket2025"
     encrypt        = true
     key            = "./terraform.tfstate"
     region         = "us-east-1"
